@@ -1,0 +1,541 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+:root {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-line span {
+  display: block;
+  animation: heroReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-line:nth-child(2) span {
+  animation-delay: 0.1s;
+}
+
+.hero-description {
+  animation: heroFade 0.7s 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-cta {
+  animation: heroFade 0.7s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* =====================================================
+   MUSTAFA AKBARI - PRELOADER
+===================================================== */
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  --color: #b8bd62;
+  --animation: 2s ease-in-out infinite;
+}
+
+.loader .circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  width: 20px;
+  height: 20px;
+
+  border: solid 2px var(--color);
+  border-radius: 50%;
+
+  margin: 0 10px;
+
+  background-color: transparent;
+
+  animation: circle-keys var(--animation);
+}
+
+.loader .circle .dot {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+
+  background-color: var(--color);
+
+  animation: dot-keys var(--animation);
+}
+
+.loader .circle .outline {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  animation: outline-keys var(--animation);
+}
+
+/* Circle delays */
+
+.loader .circle:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.loader .circle:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.loader .circle:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+/* Dot delays */
+
+.loader .circle:nth-child(2) .dot {
+  animation-delay: 0.3s;
+}
+
+.loader .circle:nth-child(3) .dot {
+  animation-delay: 0.6s;
+}
+
+.loader .circle:nth-child(4) .dot {
+  animation-delay: 0.9s;
+}
+
+/* Outline delays */
+
+.loader .circle:nth-child(1) .outline {
+  animation-delay: 0.9s;
+}
+
+.loader .circle:nth-child(2) .outline {
+  animation-delay: 1.2s;
+}
+
+.loader .circle:nth-child(3) .outline {
+  animation-delay: 1.5s;
+}
+
+.loader .circle:nth-child(4) .outline {
+  animation-delay: 1.8s;
+}
+
+/* Circle */
+
+@keyframes circle-keys {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Dot */
+
+@keyframes dot-keys {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Outline */
+
+@keyframes outline-keys {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    outline: solid 20px var(--color);
+    outline-offset: 0;
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    outline: solid 0 transparent;
+    outline-offset: 20px;
+    opacity: 0;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  .loader .circle {
+    width: 17px;
+    height: 17px;
+    margin: 0 7px;
+  }
+
+  .loader .circle .dot {
+    width: 13px;
+    height: 13px;
+  }
+
+  .loader .circle .outline {
+    width: 17px;
+    height: 17px;
+  }
+}
+/* =====================================================
+   LIVE GLASS EFFECT
+===================================================== */
+
+.live-glass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Moving light */
+
+.live-glass::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  z-index: -1;
+
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgba(184, 189, 98, 0.12) 46%,
+    rgba(255, 255, 255, 0.09) 50%,
+    rgba(184, 189, 98, 0.12) 54%,
+    transparent 65%
+  );
+
+  transform: translateX(-35%) rotate(12deg);
+
+  animation: glass-live 4s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+/* Soft breathing light */
+
+.live-glass::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+
+  border-radius: inherit;
+
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 255, 255, 0.08),
+    transparent 55%
+  );
+
+  opacity: 0.5;
+
+  animation: glass-breathe 3s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   LIVE ANIMATION
+===================================================== */
+
+@keyframes glass-live {
+  0%,
+  100% {
+    transform: translateX(-45%) rotate(12deg);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: translateX(45%) rotate(12deg);
+    opacity: 1;
+  }
+}
+
+@keyframes glass-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+
+/* =====================================================
+   PRELOADER
+===================================================== */
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  --color: #b8bd62;
+  --animation: 2s ease-in-out infinite;
+}
+
+.loader .circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  width: 20px;
+  height: 20px;
+
+  border: solid 2px var(--color);
+  border-radius: 50%;
+
+  margin: 0 10px;
+
+  background-color: transparent;
+
+  animation: circle-keys var(--animation);
+}
+
+.loader .circle .dot {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+
+  background-color: var(--color);
+
+  animation: dot-keys var(--animation);
+}
+
+.loader .circle .outline {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  animation: outline-keys var(--animation);
+}
+
+
+/* Circle delays */
+
+.loader .circle:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.loader .circle:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.loader .circle:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+
+/* Dot delays */
+
+.loader .circle:nth-child(2) .dot {
+  animation-delay: 0.3s;
+}
+
+.loader .circle:nth-child(3) .dot {
+  animation-delay: 0.6s;
+}
+
+.loader .circle:nth-child(4) .dot {
+  animation-delay: 0.9s;
+}
+
+
+/* Outline delays */
+
+.loader .circle:nth-child(1) .outline {
+  animation-delay: 0.9s;
+}
+
+.loader .circle:nth-child(2) .outline {
+  animation-delay: 1.2s;
+}
+
+.loader .circle:nth-child(3) .outline {
+  animation-delay: 1.5s;
+}
+
+.loader .circle:nth-child(4) .outline {
+  animation-delay: 1.8s;
+}
+
+
+/* Circle animation */
+
+@keyframes circle-keys {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+/* Dot animation */
+
+@keyframes dot-keys {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+
+/* Outline animation */
+
+@keyframes outline-keys {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+
+    outline: solid 20px var(--color);
+    outline-offset: 0;
+
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+
+    outline: solid 0 transparent;
+    outline-offset: 20px;
+
+    opacity: 0;
+  }
+}
+
+
+/* =====================================================
+   LOADER MOBILE
+===================================================== */
+
+@media (max-width: 640px) {
+  .loader .circle {
+    width: 17px;
+    height: 17px;
+    margin: 0 7px;
+  }
+
+  .loader .circle .dot {
+    width: 13px;
+    height: 13px;
+  }
+
+  .loader .circle .outline {
+    width: 17px;
+    height: 17px;
+  }
+}
